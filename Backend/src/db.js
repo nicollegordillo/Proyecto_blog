@@ -3,7 +3,7 @@ import pool from './conn.js';
 // Función para agregar un nuevo post a la base de datos
 export async function addPost(postData) {
   try {
-    const query = 'INSERT INTO tamagotchi_items (name, description, price, category, image) VALUES (?, ?, ?, ?, ?)';
+    const query = 'INSERT INTO tamagotchi2_items (name, description, price, category, image) VALUES (?, ?, ?, ?, ?)';
     const result = await pool.query(query, [postData.name, postData.description, postData.price, postData.category, postData.image]);
     return result.insertId; // Retorna el ID del nuevo post insertado
   } catch (error) {
@@ -15,7 +15,7 @@ export async function addPost(postData) {
 // Función para actualizar un post existente en la base de datos
 export async function updatePost(postId, postData) {
   try {
-    const query = 'UPDATE tamagotchi_items SET name = ?, description = ?, price = ?, category = ?, image = ? WHERE id = ?';
+    const query = 'UPDATE tamagotchi2_items SET name = ?, description = ?, price = ?, category = ?, image = ? WHERE id = ?';
     const result = await pool.query(query, [postData.name, postData.description, postData.price, postData.category, postData.image, postId]);
     return result.affectedRows > 0; // Retorna true si se actualizó correctamente, false si no se encontró el post
   } catch (error) {
@@ -27,7 +27,7 @@ export async function updatePost(postId, postData) {
 // Función para borrar un post existente de la base de datos
 export async function deletePost(postId) {
   try {
-    const query = 'DELETE FROM tamagotchi_items WHERE id = ?';
+    const query = 'DELETE FROM tamagotchi2_items WHERE id = ?';
     const result = await pool.query(query, [postId]);
     return result.affectedRows > 0; // Retorna true si se eliminó correctamente, false si no se encontró el post
   } catch (error) {
@@ -39,7 +39,7 @@ export async function deletePost(postId) {
 // Función para buscar un post por su ID en la base de datos
 export async function getPostById(postId) {
   try {
-    const query = 'SELECT * FROM tamagotchi_items WHERE id = ?';
+    const query = 'SELECT * FROM tamagotchi2_items WHERE id = ?';
     const [rows] = await pool.query(query, [postId]);
     return rows[0]; // Retorna el primer post encontrado con el ID especificado, o undefined si no se encuentra
   } catch (error) {
@@ -51,6 +51,6 @@ export async function getPostById(postId) {
 
 // Obtener todos los posts
 export async function getAllPosts() {
- const [rows] = await pool.query('SELECT * FROM tamagotchi_items')
+ const [rows] = await pool.query('SELECT * FROM tamagotchi2_items')
  return rows
 }
