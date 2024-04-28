@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { tinkyWinkyLogo, tamaImage, kuchipatchi } from './images';
 import './App.css';
-import LoginPage from './LoginPage.jsx';
+import  withRouting from './RouterHOC.jsx';
 
-const Header = ({ onRouteChange }) => {
+const Header = ({ goToLoginPage }) => {
   const styles = {
     padding: '20px 25px',
     backgroundColor: '#E8A7DD',
@@ -35,7 +35,7 @@ const Header = ({ onRouteChange }) => {
         <img src={tinkyWinkyLogo} alt="Tinky Winky Logo" style={imageStyles} />
         <span>Kuchipatchi town</span>
       </div>
-      <button onClick={() => onRouteChange('login')}>Admin</button>
+      <button onClick={goToLoginPage}>Admin</button>
     </header>
   );
 };
@@ -303,33 +303,18 @@ fontFamily: 'sans-serif',
 };
 
 const App = () => {
-const [route, setRoute] = useState('home'); // Initialize the route state
+        const [route, setRoute] = useState('home'); // Initialize the route state
 
-  // Function to change the route to login
-  const onRouteChange = () => {
-    setRoute('login');
-  };
-
-  // Render the appropriate component based on the current route
-  switch (route) {
-    case 'login':
-      return <LoginPage />;
-    case 'home':
-      return (
-        <div>
-          <h1>Normal Page</h1>
-          <button onClick={onRouteChange}>Go to Login</button>
-        </div>
-      );
-    default:
-      return <div>Error: Invalid route</div>;
-  }
+       // Function to change the route
+        const onRouteChange = (newRoute) => {
+          setRoute(newRoute);
+        };
         const styles = {
           fontFamily: 'Times New Roman, sans-serif',
           backgroundImage: 'linear-gradient(135deg, #db00b6 25%, transparent 25%), linear-gradient(225deg, #db00b6 25%, transparent 25%), linear-gradient(45deg, #db00b6 25%, transparent 25%), linear-gradient(315deg, #db00b6 25%, #64dfdf 25%)',
-    backgroundPosition: '40px 0, 40px 0, 0 0, 0 0',
-    backgroundSize: '80px 80px',
-    backgroundRepeat: 'repeat',
+          backgroundPosition: '40px 0, 40px 0, 0 0, 0 0',
+          backgroundSize: '80px 80px',
+          backgroundRepeat: 'repeat',
           color: 'black',
           display: 'flex',
           flexDirection: 'column',
@@ -345,11 +330,12 @@ const [route, setRoute] = useState('home'); // Initialize the route state
           flexDirection: 'column',
           marginTop: '40px',
         }
-
+          const goToLoginPage = () => {
+    onRouteChange('login'); // Llama a la función onRouteChange con la ruta 'login'
+  };
         return (
           <main style={styles}>
-            <Header onRouteChange={onRouteChange} />
-
+            <Header goToLoginPage={goToLoginPage} />
             <div style={{ flex: 1 }}>
               <React.Suspense fallback={<Loading />}>
                 <Posts />

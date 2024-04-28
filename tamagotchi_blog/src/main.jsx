@@ -1,9 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import App from './App.jsx';
 import './index.css';
-import RouterHOC from './RouterHOC.jsx';
+import withRouting from './RouterHOC.jsx';
 
-const AppWithRouting = RouterHOC(App);
+const AppWithRouting = withRouting(App);
 
-ReactDOM.createRoot(document.getElementById('root')).render(<AppWithRouting />);
+ReactDOM.render(<AppWithRouting />, document.getElementById('root'));

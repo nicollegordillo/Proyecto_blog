@@ -1,26 +1,24 @@
 import React, { useState } from 'react';
+import App from './App';
+import LoginPage from './LoginPage.jsx';
 
-const RouterHOC = (Component) => {
-  const WrappedComponent = () => {
-    const [route, setRoute] = useState(''); // State to track the current route
+const withRouting = (WrappedComponent) => {
+  const RoutedComponent = () => {
+    const [route, setRoute] = useState('home'); // Inicialmente, la ruta es 'home'
 
-    const onRouteChange = (newRoute) => {
+    const handleRouteChange = (newRoute) => {
       setRoute(newRoute);
     };
 
-    // Render the appropriate component based on the current route
     switch (route) {
       case 'login':
         return <LoginPage />;
-      case 'admin':
-        return <AdminPage />;
       default:
-        return <Component onRouteChange={onRouteChange} />;
+        return <WrappedComponent onRouteChange={handleRouteChange} />;
     }
   };
 
-  return WrappedComponent;
+  return RoutedComponent;
 };
 
-export default RouterHOC;
-
+export default  withRouting;
