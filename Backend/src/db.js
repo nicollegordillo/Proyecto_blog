@@ -15,7 +15,7 @@ export async function login(username, password) {
         const { password_hash, password_salt } = user;
 
         // Genera el hash de la contraseña proporcionada junto con la sal almacenada
-        const hashedPassword = crypto.createHash('md5').update(password + password_salt).digest('hex');
+        const hashedPassword = crypto.createHash('md5').update(password).digest('hex');
 
         // Compara el hash generado con el hash almacenado en la base de datos
         if (hashedPassword === password_hash) {
