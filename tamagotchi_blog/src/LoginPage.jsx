@@ -62,6 +62,9 @@ const LoginPage = ({ onRouteChange }) => {
         <button className="inputButton" onClick={handleLogin}>
           Login
         </button>
+        <button className="inputButton" onClick={() => onRouteChange('home')}>
+          Back
+        </button>
         {error && <div className="errorMessage">{error}</div>}
       </div>
     </div>

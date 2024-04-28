@@ -127,7 +127,7 @@ const Post = ({ name, description, price, category, image }) => {
     color: 'white',
     padding: '5px 10px',
     position: 'absolute',
-    top: '-30px',
+    top: '0px',
     left: '40px',
     transform: 'translateX(-50%)',
     zIndex: '1'
@@ -352,24 +352,24 @@ const App = ({ onRouteChange }) => {
         } else {
           // Si hay un token almacenado, llamar a la ruta '/admin' con el token en el encabezado 'Authorization'
           fetch('https://api.tiburoncin.lat/admin', {
-  method: 'POST', // Cambia el método a POST
-  headers: {
-    'Content-Type': 'application/json' // Indica que el cuerpo de la solicitud es JSON
-  },
-  body: JSON.stringify({ token }) // Envía el token en el cuerpo de la solicitud
-})
-      .then(response => {
-        if (response.ok) {
-          route='admin'// El token es válido, puedes redirigir al usuario a la página de administrador
-          // O realizar otras acciones necesarias
-        } else {
-          route='login'// El token es inválido o ha expirado, maneja el error de acuerdo a tu lógica
-        }
-      })
-      .catch(error => {
-        console.error('Error al verificar el token:', error);
-      });
-    };
+            method: 'POST', // Cambia el método a POST
+            headers: {
+              'Content-Type': 'application/json' // Indica que el cuerpo de la solicitud es JSON
+            },
+            body: JSON.stringify({ token }) // Envía el token en el cuerpo de la solicitud
+          })
+          .then(response => {
+            if (response.ok) {
+              route='admin'// El token es válido, puedes redirigir al usuario a la página de administrador
+             // O realizar otras acciones necesarias
+            } else {
+              route='login'// El token es inválido o ha expirado, maneja el error de acuerdo a tu lógica
+            }
+          })
+          .catch(error => {
+            console.error('Error al verificar el token:', error);
+          });
+        };
         
         const goToLoginPage = () => {
           console.log("Botón Admin clickeado");
