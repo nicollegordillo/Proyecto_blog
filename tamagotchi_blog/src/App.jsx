@@ -314,7 +314,7 @@ fontFamily: 'sans-serif',
 
 const App = ({ onRouteChange }) => {
         const [route, setRoute] = useState('home'); // Initialize the route state
-console.log("onRouteChange en App:", onRouteChange);
+//console.log("onRouteChange en App:", onRouteChange);
        // Function to change the route
  //       onRouteChange = (newRoute) => {
    //       setRoute(newRoute);
@@ -340,10 +340,42 @@ console.log("onRouteChange en App:", onRouteChange);
           flexDirection: 'column',
           marginTop: '40px',
         }
+        // Obtener el token almacenado localmente
+        const token = localStorage.getItem('token');
+
+        // Verificar si el token existe
+        if (!token) {
+          route='login'// No hay token almacenado, redirigir al usuario a la página de inicio de sesión
+         // Aquí puedes usar la función onRouteChange o cualquier otra forma de manejar el cambio de ruta
+         //onRouteChange('login');
+        } else {
+          // Si hay un token almacenado, llamar a la ruta '/admin' con el token en el encabezado 'Authorization'
+          fetch('https://api.tiburoncin.lat/admin', {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${token}` // Agregar el token al encabezado Authorization
+          }
+       })
+      .then(response => {
+        if (response.ok) {
+          route='admin'// El token es válido, puedes redirigir al usuario a la página de administrador
+          // O realizar otras acciones necesarias
+        } else {
+          route='login'// El token es inválido o ha expirado, maneja el error de acuerdo a tu lógica
+        }
+      })
+      .catch(error => {
+        console.error('Error al verificar el token:', error);
+      });
+    };
           const goToLoginPage = () => {
-    console.log("Botón Admin clickeado");
-    onRouteChange('login'); // Llama a la función onRouteChange con la ruta 'login'
-  };
+            console.log("Botón Admin clickeado");
+            if (route === 'admin') {
+              onRouteChange('admin');
+            } else {
+              onRouteChange('login');
+            }
+          };
         return (
           <main style={styles}>
             <Header goToLoginPage={goToLoginPage} />

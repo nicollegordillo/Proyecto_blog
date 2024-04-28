@@ -79,14 +79,33 @@ app.post('/login', async (req, res) => {
     }
 
     // Generar un token de autenticación utilizando una función de autenticación
-   // const token = generateAuthToken(user);
+    const token = generateAuthToken(user);
 
     // Devolver el token al cliente
-    res.send('Hello World!');
+    //res.send('Hello World!');
+    res.json({ token });
   } catch (error) {
     console.error('Error al realizar el inicio de sesión:', error);
     res.status(500).send('Error interno del servidor');
   }
+});
+
+// Middleware de autenticación
+function authenticateToken(req, res, next) {
+  const token = req.headers['authorization'];
+  if (!token) return res.status(401).json({ error: 'Acceso no autorizado' });
+
+  jwt.verify(token, 'secreto', (err, user) => {
+    if (err) return res.status(403).json({ error: 'Token inválido' });
+    req.user = user;
+    next();
+  });
+}
+
+// Rutas protegidas
+app.get('/admin', authenticateToken, (req, res) => {
+  // Si llega aquí, significa que el token JWT es válido
+  res.send('Bienvenido a la página de administrador');
 });
 
 // Ruta para obtener un post específico por su ID

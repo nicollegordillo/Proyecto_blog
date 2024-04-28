@@ -23,6 +23,11 @@ const LoginPage = ({ onRouteChange }) => {
 
       // Check if the request was successful
       if (response.ok) {
+        const { token } = await response.json();
+        
+        // Save token to local storage
+        localStorage.setItem('token', token);
+
         //const [route, setRoute] = useState('login');// Perform successful login actions
         onRouteChange('admin');
         console.log("Enter");
