@@ -3,6 +3,44 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { tinkyWinkyLogo, tamaImage, kuchipatchi } from './images';
 import './App.css';
+import LoginPage from './LoginPage.jsx';
+
+const Header = ({ onRouteChange }) => {
+  const styles = {
+    padding: '20px 25px',
+    backgroundColor: '#E8A7DD',
+    fontSize: '30px',
+    textAlign: 'center',
+    textTransform: 'uppercase',
+    color: 'black',
+    fontWeight: 'bold',
+    position: 'fixed',
+    top: 0,
+    width: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    zIndex: '2',
+    fontFamily: 'sans-serif',
+  };
+
+  const imageStyles = {
+    width: '5%',
+    marginRight: '10px'
+  };
+
+  return (
+    <header style={styles}>
+      <div>
+        <img src={tinkyWinkyLogo} alt="Tinky Winky Logo" style={imageStyles} />
+        <span>Kuchipatchi town</span>
+      </div>
+      <button onClick={() => onRouteChange('login')}>Admin</button>
+    </header>
+  );
+};
+
+
 
   const loadingStyle = {
     color: '#ffffff',
@@ -20,38 +58,7 @@ import './App.css';
     marginRight: 'auto'
   };
 
-const Header = () => {
-  const styles = {
-    padding: '20px 25px',
-    backgroundColor: '#E8A7DD',
-    fontSize: '30px',
-    textAlign: 'center',
-    textTransform: 'uppercase',
-    color: 'black',
-    fontWeight: 'bold',
-    position: 'fixed',
-    top: 0,
-    width: '100%',
-    display: 'flex', // Use flexbox to align items
-    alignItems: 'center', // Align items vertically in the center
-    justifyContent: 'center', // Center items horizontally
-    zIndex: '2',
-    fontFamily: 'sans-serif',
-  };
 
-
-  const imageStyles = {
-    width: '5%',
-    marginRight: '10px'
-  };
-
-  return (
-    <header style={styles}>
-      <img src={tinkyWinkyLogo} alt="Tinky Winky Logo" style={imageStyles} />
-      <span>Kuchipatchi town</span>
-    </header>
-  );
-};
 
 const Footer = () => {
   const styles = {
@@ -295,8 +302,28 @@ fontFamily: 'sans-serif',
   );
 };
 
-
 const App = () => {
+const [route, setRoute] = useState('home'); // Initialize the route state
+
+  // Function to change the route to login
+  const onRouteChange = () => {
+    setRoute('login');
+  };
+
+  // Render the appropriate component based on the current route
+  switch (route) {
+    case 'login':
+      return <LoginPage />;
+    case 'home':
+      return (
+        <div>
+          <h1>Normal Page</h1>
+          <button onClick={onRouteChange}>Go to Login</button>
+        </div>
+      );
+    default:
+      return <div>Error: Invalid route</div>;
+  }
         const styles = {
           fontFamily: 'Times New Roman, sans-serif',
           backgroundImage: 'linear-gradient(135deg, #db00b6 25%, transparent 25%), linear-gradient(225deg, #db00b6 25%, transparent 25%), linear-gradient(45deg, #db00b6 25%, transparent 25%), linear-gradient(315deg, #db00b6 25%, #64dfdf 25%)',
@@ -321,7 +348,7 @@ const App = () => {
 
         return (
           <main style={styles}>
-            <Header />
+            <Header onRouteChange={onRouteChange} />
 
             <div style={{ flex: 1 }}>
               <React.Suspense fallback={<Loading />}>
@@ -333,9 +360,6 @@ const App = () => {
           </main>
         );
       };
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<App />);
 
 
 export default App
