@@ -352,11 +352,12 @@ const App = ({ onRouteChange }) => {
         } else {
           // Si hay un token almacenado, llamar a la ruta '/admin' con el token en el encabezado 'Authorization'
           fetch('https://api.tiburoncin.lat/admin', {
-          method: 'GET',
-          headers: {
-            'Authorization': `Bearer ${token}` // Agregar el token al encabezado Authorization
-          }
-       })
+  method: 'POST', // Cambia el método a POST
+  headers: {
+    'Content-Type': 'application/json' // Indica que el cuerpo de la solicitud es JSON
+  },
+  body: JSON.stringify({ token }) // Envía el token en el cuerpo de la solicitud
+})
       .then(response => {
         if (response.ok) {
           route='admin'// El token es válido, puedes redirigir al usuario a la página de administrador

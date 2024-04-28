@@ -91,10 +91,10 @@ app.post('/login', async (req, res) => {
   }
 });
 
-app.options('/admin', cors());
 // Middleware de autenticación
 function authenticateToken(req, res, next) {
-  const token = req.headers['authorization'];
+  // Extrae el token del cuerpo de la solicitud en lugar de los encabezados
+  const token = req.body.token;
   if (!token) return res.status(401).json({ error: 'Acceso no autorizado' });
 
   jwt.verify(token, 'secreto', (err, user) => {
@@ -105,7 +105,7 @@ function authenticateToken(req, res, next) {
 }
 
 // Rutas protegidas
-app.get('/admin', authenticateToken, (req, res) => {
+app.post('/admin', authenticateToken, (req, res) => {
   // Si llega aquí, significa que el token JWT es válido
   res.send('Bienvenido a la página de administrador');
 });
