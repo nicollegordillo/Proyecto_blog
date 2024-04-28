@@ -1,19 +1,32 @@
 import pool from './conn.js';
-
+import crypto from 'crypto';
 // Función para realizar el login de un usuario
 export async function login(username, password) {
-  try {
-    // Realizar la consulta para verificar las credenciales del usuario
-    const query = 'SELECT * FROM users WHERE username = ? AND password = ?';
-    const [rows] = await pool.query(query, [username, password]);
-    
-    // Si se encuentra un usuario con las credenciales proporcionadas, retornar los datos del usuario
-    // De lo contrario, retornar null
-    return rows.length > 0 ? rows[0] : null;
-  } catch (error) {
-    console.error('Error al realizar el login:', error);
-    throw error;
-  }
+    try {
+        // Realizar la consulta para obtener el usuario por su nombre de usuario
+        const query = 'SELECT * FROM users WHERE username = ?';
+        const [rows] = await pool.query(query, [username]);
+
+        if (rows.length === 0) {
+            return null; // Si el usuario no existe, retorna null
+        }
+
+        const user = rows[0];
+        const { password_hash, password_salt } = user;
+
+        // Genera el hash de la contraseña proporcionada junto con la sal almacenada
+        const hashedPassword = crypto.createHash('md5').update(password + password_salt).digest('hex');
+
+        // Compara el hash generado con el hash almacenado en la base de datos
+        if (hashedPassword === password_hash) {
+            return user; // Si los hashes coinciden, retorna los datos del usuario
+        } else {
+            return null; // Si los hashes no coinciden, retorna null
+        }
+    } catch (error) {
+        console.error('Error al realizar el inicio de sesión:', error);
+        throw error;
+    }
 }
 
 // Función para agregar un nuevo post a la base de datos
