@@ -23,8 +23,8 @@ const LoginPage = ({ onRouteChange }) => {
 
       // Check if the request was successful
       if (response.ok) {
-        const { token } = await response.json();
-        
+        let { token } = await response.json();
+        console.log(token);        
         // Save token to local storage
         localStorage.setItem('token', token);
 

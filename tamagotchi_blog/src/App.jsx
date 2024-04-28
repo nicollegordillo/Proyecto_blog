@@ -313,7 +313,7 @@ fontFamily: 'sans-serif',
 };
 
 const App = ({ onRouteChange }) => {
-        const [route, setRoute] = useState('home'); // Initialize the route state
+        let [route, setRoute] = useState('home'); // Initialize the route state
 //console.log("onRouteChange en App:", onRouteChange);
        // Function to change the route
  //       onRouteChange = (newRoute) => {
@@ -341,10 +341,11 @@ const App = ({ onRouteChange }) => {
           marginTop: '40px',
         }
         // Obtener el token almacenado localmente
-        const token = localStorage.getItem('token');
-
+        let token = localStorage.getItem('token');
+        console.log(token);
         // Verificar si el token existe
         if (!token) {
+          console.log("No hay token");
           route='login'// No hay token almacenado, redirigir al usuario a la página de inicio de sesión
          // Aquí puedes usar la función onRouteChange o cualquier otra forma de manejar el cambio de ruta
          //onRouteChange('login');
