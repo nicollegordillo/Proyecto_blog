@@ -28,6 +28,16 @@ const Header = ({ goToLoginPage }) => {
     width: '5%',
     marginRight: '10px'
   };
+  const buttonStyle = {
+    backgroundColor: 'cornflowerblue',
+    color: 'white',
+    padding: '12px 24px',
+    fontSize: '24px',
+    borderRadius: '8px',
+    border: 'none',
+    cursor: 'pointer',
+    marginRight: '50px'
+  };
 
   return (
     <header style={styles}>
@@ -35,7 +45,7 @@ const Header = ({ goToLoginPage }) => {
         <img src={tinkyWinkyLogo} alt="Tinky Winky Logo" style={imageStyles} />
         <span>Kuchipatchi town</span>
       </div>
-      <button onClick={goToLoginPage}>Admin</button>
+      <button style={buttonStyle} onClick={goToLoginPage}>Admin</button>
     </header>
   );
 };

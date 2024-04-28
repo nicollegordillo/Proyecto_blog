@@ -1,3 +1,4 @@
+
 @keyframes mltShdSpin {
     0% {
       box-shadow: 0 -0.83em 0 -0.4em,
@@ -41,9 +42,9 @@
 .mainContainer {
   flex-direction: column;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 100%;
 }
 
 .titleContainer {
@@ -81,4 +82,7 @@
   font-size: 24px;
   border-radius: 8px;
   cursor: pointer;
+}
+#root {
+  width: 100%;
 }
