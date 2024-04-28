@@ -91,23 +91,27 @@ app.post('/login', async (req, res) => {
   }
 });
 
-// Middleware de autenticación
-function authenticateToken(req, res, next) {
-  // Extrae el token del cuerpo de la solicitud en lugar de los encabezados
-  const token = req.body.token;
-  if (!token) return res.status(401).json({ error: 'Acceso no autorizado' });
+app.post('/admin', async (req, res) => {
+  const { token } = req.body;
 
-  jwt.verify(token, 'secreto', (err, user) => {
-    if (err) return res.status(403).json({ error: 'Token inválido' });
-    req.user = user;
-    next();
-  });
-}
+  try {
+    // Verificar si hay un token en la solicitud
+    if (!token) {
+      return res.status(401).json({ error: 'Acceso no autorizado' });
+    }
 
-// Rutas protegidas
-app.post('/admin', authenticateToken, (req, res) => {
-  // Si llega aquí, significa que el token JWT es válido
-  res.send('Bienvenido a la página de administrador');
+    // Verificar la validez del token
+    const user = await verifyAuthToken(token);
+    if (!user) {
+      return res.status(403).json({ error: 'Token inválido' });
+    }
+
+    // Si el token es válido, el usuario está autenticado y puedes proceder con la lógica de la ruta '/admin'
+    res.send('Bienvenido a la página de administrador');
+  } catch (error) {
+    console.error('Error al verificar el token:', error);
+    res.status(500).send('Error interno del servidor');
+  }
 });
 
 // Ruta para obtener un post específico por su ID

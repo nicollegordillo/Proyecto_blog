@@ -340,7 +340,7 @@ const App = ({ onRouteChange }) => {
           flexDirection: 'column',
           marginTop: '40px',
         }
-        // Obtener el token almacenado localmente
+        
         let token = localStorage.getItem('token');
         console.log(token);
         // Verificar si el token existe
@@ -370,14 +370,15 @@ const App = ({ onRouteChange }) => {
         console.error('Error al verificar el token:', error);
       });
     };
-          const goToLoginPage = () => {
-            console.log("Botón Admin clickeado");
-            if (route === 'admin') {
-              onRouteChange('admin');
-            } else {
-              onRouteChange('login');
-            }
-          };
+        
+        const goToLoginPage = () => {
+          console.log("Botón Admin clickeado");
+          if (route === 'admin') {
+            onRouteChange('admin');
+          } else {
+            onRouteChange('login');
+          }
+        };
         return (
           <main style={styles}>
             <Header goToLoginPage={goToLoginPage} />

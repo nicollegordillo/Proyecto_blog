@@ -18,3 +18,23 @@ export function generateAuthToken(user) {
 
   return token;
 }
+
+// Función para verificar la validez del token de autenticación
+export async function verifyAuthToken(token) {
+  try {
+    // Verificar el token utilizando la biblioteca JWT
+    const user = await new Promise((resolve, reject) => {
+      jwt.verify(token, 'secreto', (err, decoded) => {
+        if (err) {
+          reject(err); // Si hay un error, rechaza la promesa
+        } else {
+          resolve(decoded.user); // Si el token es válido, resuelve la promesa con los datos decodificados del usuario
+        }
+      });
+    });
+
+    return user; // Devuelve los datos decodificados del usuario
+  } catch (error) {
+    throw error; // Si ocurre un error durante la verificación del token, lanza una excepción
+  }
+}
