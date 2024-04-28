@@ -1,6 +1,7 @@
 import React, { useState, useEffect, Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
+import { tinkyWinkyLogo, tamaImage, kuchipatchi } from './images';
 
 const Loading = () => {
   const loadingStyle = {
@@ -50,7 +51,7 @@ const Header = () => {
 
   return (
     <header style={styles}>
-      <img src="./Images/tinky-winky.png" alt="Tinky Winky Logo" style={imageStyles} />
+      <img src={tinkyWinkyLogo} alt="Tinky Winky Logo" style={imageStyles} />
       <span>Kuchipatchi town</span>
     </header>
   );
@@ -188,7 +189,7 @@ const Introduction = () => {
     <div style={containerStyles}>
       <p>En este blog encontrarás contenido sobre los objetos disponibles en el tamagotchi v5 celebrity.</p>
       <h3>Este blog está inspirado en mi tamagotchi!</h3>
-      <img src="./Images/tama.jpeg" alt="Kuchipatchi Town" style={imageStyles} />
+      <img src={tamaImage} alt="Kuchipatchi Town" style={imageStyles} />
     </div>
   );
 };
@@ -208,7 +209,7 @@ const Posts = () => {
   const getPosts = async () => {
     setIsLoading(true);
     try {
-      const apiResponse = await fetch('https://api.tiburoncin.lat/22246/posts');
+      const apiResponse = await fetch('https://api.tiburoncin.lat/32246/posts');
 
       if (!apiResponse.ok) {
         throw new Error(`API call failed with status: ${apiResponse.status}`);
@@ -275,13 +276,14 @@ const App = () => {
     justifyContent: 'space-between',
     margin: 0,
     padding: 0,
-    minHeight: '100vh'
+    minHeight: '100vh',
+    width:'100%'
   };
 
   return (
     <main style={styles}>
       <Header />
-      <div style={{ flex: 1 }}>
+      <div style={{ flex: 1, width:'100%' }}>
         <Suspense fallback={<Loading />}>
           <Posts />
         </Suspense>
