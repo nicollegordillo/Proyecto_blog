@@ -18,7 +18,7 @@ const port = 32246
 
 // Middleware para parsear el body de las solicitudes
 app.use(express.json())
-let cors = require("cors");
+//let cors = require("cors");
 app.use(cors());
 //app.use(cors())
 
