@@ -20,6 +20,7 @@ const LoginPage = ({ onRouteChange }) => {
       if (response.ok) {
         // Perform successful login actions
         onRouteChange('admin');
+        console.log("Enter");
       } else {
         // Handle login failure
         setError('Invalid username or password');

@@ -79,10 +79,10 @@ app.post('/login', async (req, res) => {
     }
 
     // Generar un token de autenticación utilizando una función de autenticación
-    const token = generateAuthToken(user);
+   // const token = generateAuthToken(user);
 
     // Devolver el token al cliente
-    res.json({ token });
+    res.send('Hello World!');
   } catch (error) {
     console.error('Error al realizar el inicio de sesión:', error);
     res.status(500).send('Error interno del servidor');
