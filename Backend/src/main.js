@@ -2,7 +2,7 @@ import express from 'express'
 import swaggerUi from 'swagger-ui-express'
 import swaggerJsdoc from 'swagger-jsdoc'
 import fs from 'fs'
-//import cors from 'cors'
+import cors from 'cors'
 import {
   getAllPosts,
   addPost,
@@ -18,7 +18,8 @@ const port = 32246
 
 // Middleware para parsear el body de las solicitudes
 app.use(express.json())
-
+let cors = require("cors");
+app.use(cors());
 //app.use(cors())
 
 // Simulación de una base de datos de posts
