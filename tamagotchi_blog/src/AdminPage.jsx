@@ -19,6 +19,7 @@ const AdminPage = ({ onRouteChange }) => {
         ["Update", update],
         ["Delete", del]
       ]}
+      handleLogout={handleLogout}
     />
     <div className="buttonContainer">
         <button className="inputButton" onClick={handleLogout}>Logout</button>
