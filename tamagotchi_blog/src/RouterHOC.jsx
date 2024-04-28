@@ -3,9 +3,10 @@ import App from './App';
 import LoginPage from './LoginPage.jsx';
 
 const withRouting = (WrappedComponent) => {
-  const RoutedComponent = () => {
+console.log("HOC de enrutamiento renderizado con:", WrappedComponent);  
+const RoutedComponent = () => {
     const [route, setRoute] = useState('home'); // Inicialmente, la ruta es 'home'
-
+   //console.log("onRouteChange recibido en el HOC:", onRouteChange);
     const handleRouteChange = (newRoute) => {
       setRoute(newRoute);
     };

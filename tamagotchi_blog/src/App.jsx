@@ -302,13 +302,13 @@ fontFamily: 'sans-serif',
   );
 };
 
-const App = () => {
+const App = ({ onRouteChange }) => {
         const [route, setRoute] = useState('home'); // Initialize the route state
-
+console.log("onRouteChange en App:", onRouteChange);
        // Function to change the route
-        const onRouteChange = (newRoute) => {
-          setRoute(newRoute);
-        };
+ //       onRouteChange = (newRoute) => {
+   //       setRoute(newRoute);
+     //   };
         const styles = {
           fontFamily: 'Times New Roman, sans-serif',
           backgroundImage: 'linear-gradient(135deg, #db00b6 25%, transparent 25%), linear-gradient(225deg, #db00b6 25%, transparent 25%), linear-gradient(45deg, #db00b6 25%, transparent 25%), linear-gradient(315deg, #db00b6 25%, #64dfdf 25%)',
@@ -331,6 +331,7 @@ const App = () => {
           marginTop: '40px',
         }
           const goToLoginPage = () => {
+    console.log("Botón Admin clickeado");
     onRouteChange('login'); // Llama a la función onRouteChange con la ruta 'login'
   };
         return (
