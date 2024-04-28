@@ -12,7 +12,7 @@ import {
 } from './db.js'
 
 const app = express()
-const port = 22246
+const port = 222461
 
 // Middleware para parsear el body de las solicitudes
 app.use(express.json())
