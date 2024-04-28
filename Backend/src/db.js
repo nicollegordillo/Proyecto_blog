@@ -12,13 +12,13 @@ export async function login(username, password) {
         }
 
         const user = rows[0];
-        const { password_hash, password_salt } = user;
+        const { password } = user;
 
         // Genera el hash de la contraseña proporcionada junto con la sal almacenada
         const hashedPassword = crypto.createHash('md5').update(password).digest('hex');
 
         // Compara el hash generado con el hash almacenado en la base de datos
-        if (hashedPassword === password_hash) {
+        if (hashedPassword === password) {
             return user; // Si los hashes coinciden, retorna los datos del usuario
         } else {
             return null; // Si los hashes no coinciden, retorna null
