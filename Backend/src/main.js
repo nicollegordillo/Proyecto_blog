@@ -10,6 +10,8 @@ import {
   updatePost,
   deletePost,
 } from './db.js'
+import { login } from './db.js';
+import { generateAuthToken } from './auth.js';
 
 const app = express()
 const port = 32246
@@ -42,8 +44,6 @@ const options = {
   apis: ['./src/*.js'], // Ruta donde se encuentran tus archivos de definición de rutas
 }
 
-const swaggerSpec = swaggerJsdoc(options)
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
 
 // Ruta para obtener todos los posts
 /**
@@ -64,6 +64,29 @@ app.get('/posts', async (req, res) => {
     res.status(500).send('Error interno del servidor')
   }
 })
+
+app.post('/login', async (req, res) => {
+  const { username, password } = req.body;
+
+  try {
+    // Verificar las credenciales del usuario utilizando la función login de db.js
+    const user = await login(username, password);
+
+    if (!user) {
+      // Si las credenciales son incorrectas, retornar un mensaje de error
+      return res.status(401).json({ error: 'Credenciales incorrectas' });
+    }
+
+    // Generar un token de autenticación utilizando una función de autenticación
+    const token = generateAuthToken(user);
+
+    // Devolver el token al cliente
+    res.json({ token });
+  } catch (error) {
+    console.error('Error al realizar el inicio de sesión:', error);
+    res.status(500).send('Error interno del servidor');
+  }
+});
 
 // Ruta para obtener un post específico por su ID
 /**

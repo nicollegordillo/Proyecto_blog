@@ -1,5 +1,21 @@
 import pool from './conn.js';
 
+// Función para realizar el login de un usuario
+export async function login(username, password) {
+  try {
+    // Realizar la consulta para verificar las credenciales del usuario
+    const query = 'SELECT * FROM users WHERE username = ? AND password = ?';
+    const [rows] = await pool.query(query, [username, password]);
+    
+    // Si se encuentra un usuario con las credenciales proporcionadas, retornar los datos del usuario
+    // De lo contrario, retornar null
+    return rows.length > 0 ? rows[0] : null;
+  } catch (error) {
+    console.error('Error al realizar el login:', error);
+    throw error;
+  }
+}
+
 // Función para agregar un nuevo post a la base de datos
 export async function addPost(postData) {
   try {
