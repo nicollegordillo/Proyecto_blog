@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import App from './App';
 import LoginPage from './LoginPage.jsx';
+import AdminPage from './AdminPage.jsx';
 
 const withRouting = (WrappedComponent) => {
 console.log("HOC de enrutamiento renderizado con:", WrappedComponent);  
@@ -13,7 +14,9 @@ const RoutedComponent = () => {
 
     switch (route) {
       case 'login':
-        return <LoginPage />;
+        return <LoginPage onRouteChange={handleRouteChange} />;
+      case 'admin':
+        return <AdminPage  onRouteChange={handleRouteChange}/>;
       default:
         return <WrappedComponent onRouteChange={handleRouteChange} />;
     }

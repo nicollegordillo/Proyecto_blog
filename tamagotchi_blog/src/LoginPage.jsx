@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+//import withRouting from './RouterHOC.jsx'; // Import the withRouting HOC
 
 const LoginPage = ({ onRouteChange }) => {
   const [username, setUsername] = useState('');
@@ -15,10 +16,14 @@ const LoginPage = ({ onRouteChange }) => {
         },
         body: JSON.stringify({ username, password }),
       });
+      
+      console.log(username);
+      console.log(JSON.stringify({ username, password }));
+      console.log(password);
 
       // Check if the request was successful
       if (response.ok) {
-        // Perform successful login actions
+        //const [route, setRoute] = useState('login');// Perform successful login actions
         onRouteChange('admin');
         console.log("Enter");
       } else {
@@ -27,7 +32,7 @@ const LoginPage = ({ onRouteChange }) => {
       }
     } catch (error) {
       // Handle network errors
-      setError('Network error. Please try again later.');
+      console.log(error);
     }
   };
 
