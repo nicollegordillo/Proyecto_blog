@@ -91,6 +91,7 @@ app.post('/login', async (req, res) => {
   }
 });
 
+app.options('/admin', cors());
 // Middleware de autenticación
 function authenticateToken(req, res, next) {
   const token = req.headers['authorization'];
