@@ -12,6 +12,7 @@ import {
 } from './db.js'
 import { login } from './db.js';
 import { generateAuthToken } from './auth.js';
+import jwt from 'jsonwebtoken';
 
 const app = express()
 const port = 32246
