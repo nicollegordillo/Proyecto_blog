@@ -34,7 +34,7 @@ const AdminPage = ({ onRouteChange }) => {
           style={{ alignSelf: 'flex-start' }}
         />
       
-      <div className="admin-content-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flex: '1' }}>
+      <div className="admin-content-container" style={{ display: 'flex',textAlign: 'center', justifyContent: 'center', alignItems: 'center', flex: '1' }}>
         {/* Renderizar el formulario cuando la opción "Create" está seleccionada */}
         {selectedOption === 'Create' && (
           <div>
