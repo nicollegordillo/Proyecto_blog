@@ -34,7 +34,7 @@ const CustomNav = ({ li, handleLogout, onOptionSelect }) => {
             </li>
           </div>
         ))}
-        <div className="navbar__li-box" style={{ display: window ? "inline-block" : "none", textAlign: 'center' }}>
+        <div  style={{marginTop:'30px',marginLeft:'30px', display: window ? "inline-block" : "none", textAlign: 'center' }}>
           <button className="logout-button" onClick={handleLogout}>
             Logout
           </button>
