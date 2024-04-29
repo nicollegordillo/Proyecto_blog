@@ -6,7 +6,7 @@ const useApi = () => {
   const [error, setError] = useState(null);
 
   const api = axios.create({
-    baseURL: 'https://tiburoncin.lat/32246' //URL del API
+    baseURL: 'https://api.tiburoncin.lat/32246' //URL del API
   });
 
   const sendRequest = async (config) => {

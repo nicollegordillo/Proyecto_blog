@@ -351,7 +351,7 @@ const App = ({ onRouteChange }) => {
          //onRouteChange('login');
         } else {
           // Si hay un token almacenado, llamar a la ruta '/admin' con el token en el encabezado 'Authorization'
-          fetch('https://api.tiburoncin.lat/admin', {
+          fetch('https://api.tiburoncin.lat/32246/admin', {
             method: 'POST', // Cambia el método a POST
             headers: {
               'Content-Type': 'application/json' // Indica que el cuerpo de la solicitud es JSON
