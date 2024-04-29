@@ -37,8 +37,8 @@ const AdminPage = ({ onRouteChange }) => {
       <div className="admin-content-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flex: '1' }}>
         {/* Renderizar el formulario cuando la opción "Create" está seleccionada */}
         {selectedOption === 'Create' && (
-          <div style={{ marginLeft: 'auto', marginRight: 'auto' }}>
-            <CreateItemForm  style={{ justifyContent: 'center !important' }} />
+          <div>
+            <CreateItemForm />
           </div>
         )}
         {selectedOption === 'Delete' && (

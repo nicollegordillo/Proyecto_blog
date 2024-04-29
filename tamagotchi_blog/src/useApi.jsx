@@ -4,11 +4,9 @@ import axios from 'axios';
 const useApi = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
   const api = axios.create({
     baseURL: 'https://api.tiburoncin.lat/32246' //URL del API
   });
-
   const sendRequest = async (config) => {
     setLoading(true);
     try {
@@ -21,8 +19,6 @@ const useApi = () => {
       setLoading(false);
     }
   };
-
   return { loading, error, sendRequest };
 };
-
 export default useApi;

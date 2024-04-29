@@ -12,12 +12,21 @@ const DeleteItemForm = ({ onDelete }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await sendRequest({
+      const response = await sendRequest({
         method: 'DELETE',
-        url: `/posts/${itemId}` // Endpoint para eliminar el elemento con el ID proporcionado
+        url: `/posts/${itemId}`
+     //   data: {itemId} // Endpoint para eliminar el elemento con el ID proporcionado
       });
-      onDelete(itemId); // Llama a la función onDelete con el ID del elemento eliminado
-      alert('Item deleted successfully');
+      console.log(response);
+      if (response.status === 204) {
+        // Item successfully deleted
+        onDelete(itemId); // Llama a la función onDelete con el ID del elemento eliminado
+        alert('Item deleted successfully');
+      } else {
+        // Unexpected response status
+        console.error('Unexpected response status:', response.status);
+        alert('Failed to delete item');
+      }
     } catch (error) {
       console.error('Error deleting item:', error);
       alert('Failed to delete item');

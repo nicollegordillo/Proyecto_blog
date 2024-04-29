@@ -35,21 +35,25 @@ const PostsTable = () => {
         <table>
           <thead>
             <tr>
+              <th>Id</th>
               <th>Name</th>
               <th>Description</th>
               <th>Price</th>
               <th>Category</th>
               <th>Image</th>
+              <th>Published</th>
             </tr>
           </thead>
           <tbody>
             {posts.map(post => (
               <tr key={post.id}>
+                <td>{post.id}</td>
                 <td>{post.name}</td>
                 <td>{post.description}</td>
                 <td>{post.price}</td>
                 <td>{post.category}</td>
                 <td><img style={{width:'20px',height:'20px'}} src={post.image} alt="Post Image" /></td>
+                <td>{post.created_at}</td>
               </tr>
             ))}
           </tbody>
