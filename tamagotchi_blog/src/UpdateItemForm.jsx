@@ -27,10 +27,10 @@ const UpdateItemForm = ({ onUpdate }) => {
         data: formData
       });
       onUpdate(formData); // Llama a la función onUpdate con los datos del formulario
-      alert('Item updated successfully');
+      //alert('Item updated successfully');
     } catch (error) {
       console.error('Error updating item:', error);
-      alert('Failed to update item');
+      //alert('Failed to update item');
     }
   };
 
