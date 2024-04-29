@@ -1,63 +1,38 @@
-import React from 'react';
-import useApi from './useApi.jsx';
+import React, { useState } from 'react';
 
-// Hook personalizado para manejar el estado del formulario
-const useForm = (initialState, onSubmit) => {
-  const [formData, setFormData] = React.useState(initialState);
-  const { sendRequest } = useApi();
+const UpdateItemForm = ({ onUpdate }) => {
+  const [formData, setFormData] = useState({
+    id: '',
+    name: '',
+    description: '',
+    price: '',
+    category: '',
+    image: ''
+  });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      // Realizar la solicitud POST a la API con los datos del formulario
-      await sendRequest({
-        method: 'POST',
-        url: '/posts', // Endpoint para crear un nuevo elemento
-        data: formData
-      });
-      // Limpia el formulario después de enviar la solicitud
-      setFormData(initialState);
-      alert('Item created successfully'); // Muestra una alerta de éxito
-    } catch (error) {
-      console.error('Error creating item:', error);
-      alert('Failed to create item'); // Muestra una alerta de error
-    }
+    onUpdate(formData); // Llama a la función onUpdate con los datos del formulario
   };
-
-  return {
-    formData,
-    handleChange,
-    handleSubmit
-  };
-};
-
-// Componente de formulario que utiliza el hook useForm
-const CreateItemForm = () => {
-  // Estado inicial del formulario
-  const initialState = {
-    name: '',
-    description: '',
-    price: '',
-    category: '',
-    image: ''
-  };
-
-  // Función de envío del formulario
-  //const onSubmit = (data) => {
-    // Aquí puedes manejar el envío del formulario, por ejemplo, enviar los datos a una API
-    //console.log('Form submitted with data:', data);
-  //};
-
-  // Usar el hook useForm
-  const { formData, handleChange, handleSubmit } = useForm(initialState);
 
   return (
     <form onSubmit={handleSubmit}>
+      <div>
+        <label>Id: </label>
+        <input
+          className="inputBox"
+          type="text"
+          name="id"
+          value={formData.id}
+          onChange={handleChange}
+          required
+        />
+      </div>
       <div>
         <label>Name: </label>
         <input
@@ -119,4 +94,4 @@ const CreateItemForm = () => {
   );
 };
 
-export default CreateItemForm;
+export default UpdateItemForm;

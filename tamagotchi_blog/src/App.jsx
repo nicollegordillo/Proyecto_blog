@@ -198,7 +198,7 @@ const Posts = () => {
           setIsLoading(true)
           try {
             const apiResponse = await fetch(
-              'https://api.tiburoncin.lat/22246/posts'
+              'https://api.tiburoncin.lat/32246/posts'
             )
 
             if (!apiResponse.ok) {
