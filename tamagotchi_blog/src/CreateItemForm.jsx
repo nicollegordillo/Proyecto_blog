@@ -57,7 +57,7 @@ const CreateItemForm = () => {
   const { formData, handleChange, handleSubmit } = useForm(initialState);
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form style={{width:'100%', height:'100%', justifyContent: 'center', alignItems: 'center'}} onSubmit={handleSubmit}>
       <div>
         <label>Name: </label>
         <input

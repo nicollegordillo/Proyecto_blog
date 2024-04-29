@@ -20,7 +20,7 @@ const CustomNav = ({ li, handleLogout, onOptionSelect }) => {
       </div>
       <ul className="navbar__list">
         {li.map((item, i) => (
-          <div className="navbar__li-box" key={i} onClick={() => handleOptionClick(item[0])}>
+          <div className="navbar__li-box"  key={i} onClick={() => handleOptionClick(item[0])}>
             <img
               src={item[1]}
               alt={item[1]}

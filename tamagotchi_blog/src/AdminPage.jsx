@@ -21,18 +21,20 @@ const AdminPage = ({ onRouteChange }) => {
   };
 
   return (
-    <div style={{display: 'flex', flexDirection: 'row',alignItems: 'center'}}>
-      <CustomNav
-        li={[
-          ["Create", create],
-          ["Read", read],
-          ["Update", update],
-          ["Delete", del]
-        ]}
-        handleLogout={handleLogout}
-        onOptionSelect={handleOptionSelect}
-      />
-      <div className="admin-content-container" style={{ justifyContent: 'center !important' }}>
+    <div  style={{display: 'flex', alignItems: 'center'}}>     
+        <CustomNav
+          li={[
+            ["Create", create],
+            ["Read", read],
+            ["Update", update],
+            ["Delete", del]
+          ]}
+          handleLogout={handleLogout}
+          onOptionSelect={handleOptionSelect}
+          style={{ alignSelf: 'flex-start' }}
+        />
+      
+      <div className="admin-content-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flex: '1' }}>
         {/* Renderizar el formulario cuando la opción "Create" está seleccionada */}
         {selectedOption === 'Create' && (
           <div style={{ marginLeft: 'auto', marginRight: 'auto' }}>
