@@ -10,7 +10,7 @@ const UpdateItemForm = ({ onUpdate }) => {
     category: '',
     image: ''
   });
-
+  const [aviso, setAviso] = useState('');
   const { sendRequest } = useApi();
 
   const handleChange = (e) => {
@@ -32,6 +32,7 @@ const UpdateItemForm = ({ onUpdate }) => {
       console.error('Error updating item:', error);
       //alert('Failed to update item');
     }
+    setAviso('Revisa el Read para verificar que se actualizó correctamente');
   };
 
   return (
@@ -103,7 +104,8 @@ const UpdateItemForm = ({ onUpdate }) => {
         />
       </div>
       {/* Resto de campos del formulario */}
-      <button className="inputButton" type="submit">Create Item</button>
+      <button className="inputButton" type="submit">Update Item</button>
+      {aviso && <div className="errorMessage">{aviso}</div>}
     </form>
   );
 };

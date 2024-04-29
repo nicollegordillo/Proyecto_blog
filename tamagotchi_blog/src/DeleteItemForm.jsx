@@ -4,6 +4,8 @@ import useApi from './useApi';
 const DeleteItemForm = ({ onDelete }) => {
   const [itemId, setItemId] = useState('');
   const { sendRequest } = useApi();
+  //const aviso ='';
+  const [aviso, setAviso] = useState('');
 
   const handleChange = (e) => {
     setItemId(e.target.value);
@@ -11,6 +13,7 @@ const DeleteItemForm = ({ onDelete }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    //aviso='Revisa el Read para verificar que se borró correctamente';
     try {
       const response = await sendRequest({
         method: 'DELETE',
@@ -31,6 +34,8 @@ const DeleteItemForm = ({ onDelete }) => {
       console.error('Error deleting item:', error);
       //alert('Failed to delete item');
     }
+    setAviso('Revisa el Read para verificar que se borró correctamente');
+    //aviso='Revisa el Read para verificar que se borró correctamente';
   };
 
   return (
@@ -46,6 +51,7 @@ const DeleteItemForm = ({ onDelete }) => {
         />
       </div>
       <button className="inputButton" type="submit">Delete Item</button>
+      {aviso && <div className="errorMessage">{aviso}</div>}
     </form>
   );
 };

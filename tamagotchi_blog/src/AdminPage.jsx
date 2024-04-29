@@ -17,6 +17,7 @@ const AdminPage = ({ onRouteChange }) => {
 
   const handleLogout = () => {
     // Perform logout logic
+    localStorage.removeItem('token');    
     onRouteChange('login');
   };
 

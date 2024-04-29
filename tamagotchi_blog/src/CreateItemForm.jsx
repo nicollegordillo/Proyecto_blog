@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useApi from './useApi.jsx';
 
 // Hook personalizado para manejar el estado del formulario
@@ -22,10 +22,11 @@ const useForm = (initialState, onSubmit) => {
       });
       // Limpia el formulario después de enviar la solicitud
       setFormData(initialState);
+      //setAviso('Item agregado correctamente');
       alert('Item created successfully'); // Muestra una alerta de éxito
     } catch (error) {
       console.error('Error creating item:', error);
-      alert('Failed to create item'); // Muestra una alerta de error
+      //alert('Failed to create item'); // Muestra una alerta de error
     }
   };
 
@@ -39,6 +40,7 @@ const useForm = (initialState, onSubmit) => {
 // Componente de formulario que utiliza el hook useForm
 const CreateItemForm = () => {
   // Estado inicial del formulario
+ // const [aviso, setAviso] = useState('');
   const initialState = {
     name: '',
     description: '',
