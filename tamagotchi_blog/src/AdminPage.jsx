@@ -6,6 +6,7 @@ import axios from 'axios';
 import CreateItemForm from "./CreateItemForm.jsx"; // Importa el componente del formulario de creación
 import DeleteItemForm from "./DeleteItemForm.jsx";
 import UpdateItemForm from "./UpdateItemForm.jsx";
+import PostsTable from "./PostsTable.jsx";
 
 const AdminPage = ({ onRouteChange }) => {
   const [selectedOption, setSelectedOption] = useState(null);
@@ -46,6 +47,11 @@ const AdminPage = ({ onRouteChange }) => {
         {selectedOption === 'Update' && (
           <div style={{ marginLeft: 'auto', marginRight: 'auto' }}>
             <UpdateItemForm  style={{ justifyContent: 'center !important' }} />
+          </div>
+        )}
+        {selectedOption === 'Read' && (
+          <div style={{ marginLeft: 'auto', marginRight: 'auto' }}>
+            <PostsTable  style={{ justifyContent: 'center !important' }} />
           </div>
         )}
       </div>

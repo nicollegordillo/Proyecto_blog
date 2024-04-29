@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import useApi from './useApi';
 
 const UpdateItemForm = ({ onUpdate }) => {
   const [formData, setFormData] = useState({
@@ -10,14 +11,27 @@ const UpdateItemForm = ({ onUpdate }) => {
     image: ''
   });
 
+  const { sendRequest } = useApi();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    onUpdate(formData); // Llama a la función onUpdate con los datos del formulario
+    try {
+      await sendRequest({
+        method: 'PUT',
+        url: `/posts/${formData.id}`, // Endpoint para actualizar el elemento con el ID proporcionado
+        data: formData
+      });
+      onUpdate(formData); // Llama a la función onUpdate con los datos del formulario
+      alert('Item updated successfully');
+    } catch (error) {
+      console.error('Error updating item:', error);
+      alert('Failed to update item');
+    }
   };
 
   return (
