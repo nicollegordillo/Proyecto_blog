@@ -51,7 +51,7 @@ const AdminPage = ({ onRouteChange }) => {
         )}
         {selectedOption === 'Read' && (
           <div style={{ marginLeft: 'auto', marginRight: 'auto' }}>
-            <PostsTable  style={{ justifyContent: 'center !important' }} />
+            <PostsTable readOptionSelected={selectedOption} style={{ justifyContent: 'center !important' }} />
           </div>
         )}
       </div>
