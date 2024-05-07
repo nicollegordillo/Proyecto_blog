@@ -1,9 +1,6 @@
 import { createRoot } from 'react-dom';
-import App from './App.jsx';
+import AppWithRouting from './AppWithRouting.jsx'; // Importas AppWithRouting desde el archivo donde lo definiste
 import './index.css';
-import withRouting from './RouterHOC.jsx';
-
-const AppWithRouting = withRouting(App);
 
 const root = createRoot(document.getElementById('root'));
 

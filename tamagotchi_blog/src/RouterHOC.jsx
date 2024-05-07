@@ -21,11 +21,12 @@ const RoutedComponent = () => {
         return <WrappedComponent onRouteChange={handleRouteChange} />;
     }
   };
-  RoutedComponent.propTypes = {
-    onRouteChange: PropTypes.func.isRequired
-  };
 
   return RoutedComponent;
 };
 
-export default  withRouting;
+withRouting.propTypes = {
+  onRouteChange: PropTypes.func.isRequired
+};
+
+export default withRouting;
