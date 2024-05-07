@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import App from './App';
+import { useState } from 'react';
 import LoginPage from './LoginPage.jsx';
+import PropTypes from 'prop-types';
 import AdminPage from './AdminPage.jsx';
 
 const withRouting = (WrappedComponent) => {
@@ -20,6 +20,9 @@ const RoutedComponent = () => {
       default:
         return <WrappedComponent onRouteChange={handleRouteChange} />;
     }
+  };
+  RoutedComponent.propTypes = {
+    onRouteChange: PropTypes.func.isRequired
   };
 
   return RoutedComponent;

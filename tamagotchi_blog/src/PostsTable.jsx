@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import useApi from './useApi'; // Importa tu hook useApi
 
 const PostsTable = () => {

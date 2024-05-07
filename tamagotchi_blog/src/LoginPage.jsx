@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 //import withRouting from './RouterHOC.jsx'; // Import the withRouting HOC
+import PropTypes from 'prop-types';
 
 const LoginPage = ({ onRouteChange }) => {
   const [username, setUsername] = useState('');
@@ -69,6 +70,10 @@ const LoginPage = ({ onRouteChange }) => {
       </div>
     </div>
   );
+};
+
+LoginPage.propTypes = {
+  onRouteChange: PropTypes.func.isRequired
 };
 
 export default LoginPage;

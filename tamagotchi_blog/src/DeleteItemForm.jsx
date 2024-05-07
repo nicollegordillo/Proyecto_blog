@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import useApi from './useApi';
+import PropTypes from 'prop-types';
 
 const DeleteItemForm = ({ onDelete }) => {
   const [itemId, setItemId] = useState('');
@@ -54,6 +55,10 @@ const DeleteItemForm = ({ onDelete }) => {
       {aviso && <div className="errorMessage">{aviso}</div>}
     </form>
   );
+};
+
+DeleteItemForm.propTypes = {
+  onDelete: PropTypes.func.isRequired
 };
 
 export default DeleteItemForm;

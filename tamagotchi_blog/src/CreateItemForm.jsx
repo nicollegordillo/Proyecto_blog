@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import useApi from './useApi.jsx';
 
 // Hook personalizado para manejar el estado del formulario
-const useForm = (initialState, onSubmit) => {
+const useForm = (initialState) => {
   const [formData, setFormData] = React.useState(initialState);
   const { sendRequest } = useApi();
 

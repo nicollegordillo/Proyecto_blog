@@ -1,9 +1,7 @@
-import React, { useState, useEffect, Suspense } from 'react';
-import ReactDOM from 'react-dom';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { tinkyWinkyLogo, tamaImage, kuchipatchi } from './images';
+import { tinkyWinkyLogo, tamaImage } from './images';
 import './App.css';
-import  withRouting from './RouterHOC.jsx';
 
 const Header = ({ goToLoginPage }) => {
   const styles = {
@@ -50,6 +48,9 @@ const Header = ({ goToLoginPage }) => {
   );
 };
 
+Header.propTypes = {
+  goToLoginPage: PropTypes.func.isRequired
+};
 
 
   const loadingStyle = {
@@ -155,6 +156,7 @@ const Post = ({ name, description, price, category, image }) => {
 };
 
 Post.propTypes = {
+  id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   price: PropTypes.string.isRequired,
@@ -263,6 +265,7 @@ const Posts = () => {
                   image
               }) => (
                 <Post
+                  key={id}
                   name={name}
                   description={description}
                   price={price}
@@ -313,12 +316,7 @@ fontFamily: 'sans-serif',
 };
 
 const App = ({ onRouteChange }) => {
-        let [route, setRoute] = useState('home'); // Initialize the route state
-//console.log("onRouteChange en App:", onRouteChange);
-       // Function to change the route
- //       onRouteChange = (newRoute) => {
-   //       setRoute(newRoute);
-     //   };
+        let [route] = useState('home'); // Initialize the route state
         const styles = {
           fontFamily: 'Times New Roman, sans-serif',
           backgroundImage: 'linear-gradient(135deg, #db00b6 25%, transparent 25%), linear-gradient(225deg, #db00b6 25%, transparent 25%), linear-gradient(45deg, #db00b6 25%, transparent 25%), linear-gradient(315deg, #db00b6 25%, #64dfdf 25%)',
@@ -332,13 +330,6 @@ const App = ({ onRouteChange }) => {
           margin: 0,
           padding: 0,
           minHeight: '100vh',
-        }
-        const divStyle = {
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          flexDirection: 'column',
-          marginTop: '40px',
         }
         
         let token = localStorage.getItem('token');
@@ -369,7 +360,7 @@ const App = ({ onRouteChange }) => {
           .catch(error => {
             console.error('Error al verificar el token:', error);
           });
-        };
+        }
         
         const goToLoginPage = () => {
           console.log("Botón Admin clickeado");
@@ -393,5 +384,8 @@ const App = ({ onRouteChange }) => {
         );
       };
 
+App.propTypes = {
+  onRouteChange: PropTypes.func.isRequired
+};
 
-export default App
+export default App;

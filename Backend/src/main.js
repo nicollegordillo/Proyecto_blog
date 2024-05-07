@@ -1,6 +1,4 @@
 import express from 'express'
-import swaggerUi from 'swagger-ui-express'
-import swaggerJsdoc from 'swagger-jsdoc'
 import fs from 'fs'
 import cors from 'cors'
 import {
@@ -23,28 +21,11 @@ app.use(express.json())
 app.use(cors());
 //app.use(cors())
 
-// Simulación de una base de datos de posts
-let posts = []
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
-//const swaggerJsdoc = require('swagger-jsdoc')
-//const swaggerUi = require('swagger-ui-express')
-
-// Configuración de Swagger
-const options = {
-  definition: {
-    openapi: '3.0.0',
-    info: {
-      title: 'API de Posts',
-      version: '1.0.0',
-      description: 'Una API para administrar posts',
-    },
-  },
-  apis: ['./src/*.js'], // Ruta donde se encuentran tus archivos de definición de rutas
-}
 
 
 // Ruta para obtener todos los posts
@@ -268,7 +249,7 @@ app.delete('/posts/:postId', async (req, res) => {
 })
 
 // Middleware para manejar errores 500
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
   console.error(err.stack)
   res.status(500).send('Error interno del servidor')
 })

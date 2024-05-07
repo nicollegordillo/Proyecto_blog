@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { menu } from '../images';
+import PropTypes from 'prop-types';
 
 const CustomNav = ({ li, handleLogout, onOptionSelect }) => {
   const [window, setWindow] = useState(false);
@@ -42,6 +43,12 @@ const CustomNav = ({ li, handleLogout, onOptionSelect }) => {
       </ul>
     </nav>
   );
+};
+
+CustomNav.propTypes = {
+  li: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.node]))).isRequired,
+  handleLogout: PropTypes.func.isRequired,
+  onOptionSelect: PropTypes.func.isRequired
 };
 
 export default CustomNav;

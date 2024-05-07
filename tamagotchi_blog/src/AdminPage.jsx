@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./styles.scss";
 import { create, read, update, del } from './images.js';
 import CustomNav from "./components/CustomNav.jsx";
-import axios from 'axios';
 import CreateItemForm from "./CreateItemForm.jsx"; // Importa el componente del formulario de creación
 import DeleteItemForm from "./DeleteItemForm.jsx";
 import UpdateItemForm from "./UpdateItemForm.jsx";
 import PostsTable from "./PostsTable.jsx";
+import PropTypes from 'prop-types';
 
 const AdminPage = ({ onRouteChange }) => {
   const [selectedOption, setSelectedOption] = useState(null);
@@ -62,4 +62,7 @@ const AdminPage = ({ onRouteChange }) => {
   );
 }
 
+AdminPage.propTypes = {
+  onRouteChange: PropTypes.func.isRequired
+};
 export default AdminPage;

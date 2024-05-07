@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import useApi from './useApi';
+import PropTypes from 'prop-types';
 
 const UpdateItemForm = ({ onUpdate }) => {
   const [formData, setFormData] = useState({
@@ -108,6 +109,10 @@ const UpdateItemForm = ({ onUpdate }) => {
       {aviso && <div className="errorMessage">{aviso}</div>}
     </form>
   );
+};
+
+UpdateItemForm.propTypes = {
+  onUpdate: PropTypes.func.isRequired
 };
 
 export default UpdateItemForm;
